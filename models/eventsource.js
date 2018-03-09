@@ -34,8 +34,8 @@ module.exports = function(req, res) {
 
 	//data object to be returned - currently a random number, but can be anything
 	var preparePayload = function(messageId) {
-		let currentDate = new Date();
-		let futureDate = new Date();
+		var currentDate = new Date();
+		var futureDate = new Date();
 		futureDate.setSeconds(futureDate.getSeconds() + 1);
 		return [
 				{
