@@ -28,18 +28,24 @@ module.exports = function(req, res) {
 		});
 	};
 
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
 	//data object to be returned - currently a random number, but can be anything
 	var preparePayload = function(messageId) {
-		return
-			[
+		const currentDate = new Date();
+		let futureDate = new Date();
+		futureDate.setSeconds(futureDate.getSeconds() + 1);
+		return [
 				{
 				  cameraIdString: 'string',
 				  channelId: 0,
 				  contents: 'string',
-				  date: '2018-03-09T08:57:03.125Z',
-				  deviceId: 'string',
+				  date: currentDate.toISOString(),
+				  deviceId: '1004',
 				  devicePid: 'string',
-				  id: messageId.toString(),
+				  id: getRandomInt(0, 1000000),
 				  isWithPic: 'string',
 				  value: 0
 				},
@@ -47,14 +53,14 @@ module.exports = function(req, res) {
 					cameraIdString: 'string',
 					channelId: 0,
 					contents: 'string',
-					date: '2018-03-09T08:57:03.125Z',
-					deviceId: 'string',
+					date: futureDate.toISOString(),
+					deviceId: '1004',
 					devicePid: 'string',
-					id: messageId.toString(),
+					id: getRandomInt(0, 1000000),
 					isWithPic: 'string',
-					value: 0
+					value: 1
 				  }
-			]
+			];
 	};
 
 	//send message back to client
@@ -67,6 +73,10 @@ module.exports = function(req, res) {
 			data.final = true;
 			data.data = 'the end';
 			counter = 0;
+			req.pause();
+			res.status = 200;
+			res.end();
+			return;
 		}
 
 		//convert message to string
