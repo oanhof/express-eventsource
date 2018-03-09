@@ -30,12 +30,31 @@ module.exports = function(req, res) {
 
 	//data object to be returned - currently a random number, but can be anything
 	var preparePayload = function(messageId) {
-		return {
-			id: messageId,
-			data: Math.floor(Math.random() * 1000000).toString(),
-			time: (new Date()).toLocaleTimeString(),
-			final: false
-		};
+		return
+			[
+				{
+				  cameraIdString: 'string',
+				  channelId: 0,
+				  contents: 'string',
+				  date: '2018-03-09T08:57:03.125Z',
+				  deviceId: 'string',
+				  devicePid: 'string',
+				  id: messageId.toString(),
+				  isWithPic: 'string',
+				  value: 0
+				},
+				{
+					cameraIdString: 'string',
+					channelId: 0,
+					contents: 'string',
+					date: '2018-03-09T08:57:03.125Z',
+					deviceId: 'string',
+					devicePid: 'string',
+					id: messageId.toString(),
+					isWithPic: 'string',
+					value: 0
+				  }
+			]
 	};
 
 	//send message back to client
